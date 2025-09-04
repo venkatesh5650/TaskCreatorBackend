@@ -1,0 +1,87 @@
+### Register User
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Venkatesh Karthan",
+  "email": "venkatesh@5650.com",
+  "password": "123456",
+  "role": "intern"
+}
+
+### Login User
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "venkatesh@5650.com",
+  "password": "123456"
+}
+
+
+
+
+
+
+### 1. Register Manager
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Venkatesh Karthan",
+  "email": "venkateshKarthan@5650.com",
+  "password": "567890",
+  "role": "manager"
+}
+
+
+### 3. Login as Manager (copy token from response)
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "venkateshKarthan@5650.com",
+  "password": "567890"
+}
+
+
+### 5. Get All Tasks (Manager only)
+GET http://localhost:5000/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NTY5MDI0ODksImV4cCI6MTc1NjkwNjA4OX0.eZ77YsGLKPQik--I2joutgEFpT0mh0Zs1047K0eZv6A
+
+### 6. Get Tasks Assigned to User (replace :id with user id)
+GET http://localhost:5000/tasks/user/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NTY5MDI0ODksImV4cCI6MTc1NjkwNjA4OX0.eZ77YsGLKPQik--I2joutgEFpT0mh0Zs1047K0eZv6A
+
+### 7. Create a Task (Manager only)
+POST http://localhost:5000/tasks/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NTY5MDI0ODksImV4cCI6MTc1NjkwNjA4OX0.eZ77YsGLKPQik--I2joutgEFpT0mh0Zs1047K0eZv6A
+
+{
+  "title": "Prepare Presentation",
+  "description": "Create slides for the upcoming client meeting",
+  "deadline": "2025-09-08",
+  "assignedUserId": 1,
+    "status": "To Do"
+}
+
+### 8. Update a Task (simulate drag-drop status change)
+PUT http://localhost:5000/tasks/update/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NTY5MDI0ODksImV4cCI6MTc1NjkwNjA4OX0.eZ77YsGLKPQik--I2joutgEFpT0mh0Zs1047K0eZv6A
+
+{
+  "title": "Finish Report Updated",
+  "description": "Report updated after review",
+  "deadline": "2025-09-08",
+  "status": "In Progress"
+}
+
+### 9. Delete a Task (Manager only)
+DELETE http://localhost:5000/tasks/delete/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NTY5MDI0ODksImV4cCI6MTc1NjkwNjA4OX0.eZ77YsGLKPQik--I2joutgEFpT0mh0Zs1047K0eZv6A
+
+### 10. Get Interns (Manager only, for assignment dropdown)
+GET http://localhost:5000/tasks/interns
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NTY5ODAyOTUsImV4cCI6MTc1Njk4Mzg5NX0.6ZaN4xx7N7FsLvw-HequU4qvGoDtGAy00BlVwTS1aT8
